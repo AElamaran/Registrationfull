@@ -6,6 +6,8 @@ import Register from "./register"
 import Form from "./ClientRegister"
 import DriverRegister from "./DriverRegister"
 import Form1 from "./VehicleRegister"
+import ClientRegister from "./ClientRegister";
+import VehicleRegister from "./VehicleRegister";
 
 function App  ()  {
     return (
@@ -15,8 +17,8 @@ function App  ()  {
 
                     <Routes>
                         <Route exact path="/" element={<Register/>}/>
-                        <Route exact path="/ClientRegister" element={<Form/>}/>
-                        <Route exact path="/VehicleRegister" element={<Form1/>}/>
+                        <Route exact path="/ClientRegister" element={<ClientRegister/>}/>
+                        <Route exact path="/VehicleRegister" element={<VehicleRegister/>}/>
                         <Route exact path="/DriverRegister" element={<DriverRegister/>}/>
                     </Routes>
 

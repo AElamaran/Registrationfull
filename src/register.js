@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 
 const Register = () => {
     return (
-        <nav className="Register">
-            <h2>COMPANION</h2>
-            <h1>Register</h1>
-            <div className='links'>
-                <ul className='center'>
+        <div className="Register">
+            <div className='Leftside'>
+                <h2 className="companyName">COMPANION</h2>
+                <h6 style={{color:"yellow"}}>Genuine People Always Choose Easiest Travelling</h6>
+            </div>
+            <div className='center'>
+                    <h2 className="formname">Register</h2>
                     <li className='registerItem button'>
                         <Link to="/ClientRegister">Company</Link>
                     </li>
@@ -17,14 +19,8 @@ const Register = () => {
                     <li className='registerItem button'>
                         <Link to="/VehicleRegister">Vehicle</Link>
                     </li>
-                </ul>
-
-                <hr/>
-
             </div>
-        </nav>
-
-
+        </div>
     );
 }
 

@@ -1,5 +1,10 @@
 import { useState } from 'react';
+import axios from 'axios';
 
+ import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
+
+
+import { message } from 'antd';
 const DriverRegister=()=> {
 
 // States for registration
@@ -9,127 +14,150 @@ const DriverRegister=()=> {
     const [city, setCity] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmpassword, setConfirmPassword] = useState('');
+    console.log(email,nic)
+    const role = "vehicle";
 
-// States for checking the errors
-    const [submitted, setSubmitted] = useState(false);
-    const [error, setError] = useState(false);
+    function  handleSubmit () {
+        let validInputs = true;
+        if (!email || !nic || !password || !confirmpassword || !name || !address || !city) {
 
-    const handleNic = (e) => {
-        setNic(e.target.value);
-        setSubmitted(false);
-    };
+            message.warning('Please fill the all fields');
+            validInputs = false;
 
-// Handling the name change
-    const handleName = (e) => {
-        setName(e.target.value);
-        setSubmitted(false);
-    };
 
-    const handleAddress = (e) => {
-        setAddress(e.target.value);
-        setSubmitted(false);
-    };
-
-    const handleCity = (e) => {
-        setCity(e.target.value);
-        setSubmitted(false);
-    };
-
-// Handling the email change
-    const handleEmail = (e) => {
-        setEmail(e.target.value);
-        setSubmitted(false);
-    };
-
-// Handling the password change
-    const handlePassword = (e) => {
-        setPassword(e.target.value);
-        setSubmitted(false);
-    };
-
-// Handling the form submission
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (name === '' || email === '' || password === '') {
-            setError(true);
-        } else {
-            setSubmitted(true);
-            setError(false);
         }
-    };
+    //     let pattern = new RegExp(/^(0|+94)\d^[0-9\b]\d{9}+$/);
+    //
+    //     if (!pattern.test(input["phone"])) {
+    //
+    //         isValid = false;
+    //
+    //         errors["phone"] = "Please enter only number and it should start with 0 or +94.";
+    //
+    //     }else if(input["phone"].length != 10){
+    //
+    //         isValid = false;
+    //
+    //         errors["phone"] = "Please enter valid phone number.";
+    //
+    //     }
+    //
+    // }
 
-// Showing success message
-    const successMessage = () => {
-        return (
-            <div
-                className="success"
-                style={{
-                    display: submitted ? '' : 'none',
-                }}>
-                <h1>User {name} successfully registered!!</h1>
-            </div>
-        );
-    };
+        // validationSchema={Yup.object({
+        //         Password:Yup.String()
+        //             .min(9,"password is too short")
+        //             .max(40,"password is too long")
+        //             .required(Required),
+        //     })}
 
-// Showing error message if error is true
-    const errorMessage = () => {
-        return (
-            <div
-                className="error"
-                style={{
-                    display: error ? '' : 'none',
-                }}>
-                <h1>Please enter all the fields</h1>
-            </div>
-        );
-    };
 
+        let letters = /^[A-Za-z]+$/;
+        if (!name.match(letters)) {
+            message.warning("Wrong Name Format");
+            validInputs = false;
+        }
+        if (!validateEmail(email)) {
+            message.warning("wrong Email Format");
+            validInputs = false;
+        }
+        if (password.length < 8) {
+            message.warning("your password is less than 8");
+            validInputs = false;
+        }
+        if (password != confirmpassword) {
+            message.warning("Not match with Password");
+            validInputs = false;
+        }
+
+        // let status;
+        // if(status = 422){
+        //     message.warning("Email is already used");
+        //     validInputs= false;
+        // }
+
+
+
+        if (validInputs) {
+            // message.success("Your Registration Success");
+
+            axios.post('http://localhost:8000/api/register11',{nic:nic,name:name,email:email,Address:address,City:city,role:role,password: password,password_confirmation: password})
+                .then(res=>
+                {console.log(res.data);
+                    message.success("Your Registration Success");
+                })
+                .catch(e => {
+                    console.log(e.response);
+                    message.warning("same email cannot be used twice");
+                });
+
+
+
+
+        }
+    }
+
+
+    function validateEmail(email) {
+        const re =
+            /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
     return (
         <div className="driverRegisterForm">
             <div>
-                <h1>Driver Registration</h1>
+                <h1 style={{color:"orangered", fontSize:35, fontStyle:"revert"}}><b>COMPANION</b></h1>
+                <hr/>
+                <h1><b>Driver Registration</b></h1>
             </div>
 
 
             {/* Calling to the methods */}
-            <div className="messages">
-                {errorMessage()}
-                {successMessage()}
-            </div>
+            {/*<div className="messages">*/}
+            {/*    {errorMessage()}*/}
+            {/*    {successMessage()}*/}
+            {/*</div>*/}
 
-            <form>
+
 
 
 
                 {/* Labels and inputs for form data */}
                 <label className="label">NIC</label>
-                <input onChange={handleNic} className="input"
+                <input  onChange={(e)=>{setNic(e.target.value)} }  className="input"
                        value={nic} type="text" />
 
                 <label className="label">Name</label>
-                <input onChange={handleName} className="input"
+                <input  onChange={(e)=>{setName(e.target.value)} }   className="input"
                        value={name} type="text" />
 
                 <label className="label">Address</label>
-                <input onChange={handleAddress} className="input"
+                <input onChange={(e)=>{setAddress(e.target.value)} }  className="input"
                        value={address} type="text" />
 
                 <label className="label">City</label>
-                <input onChange={handleCity} className="input"
+                <input onChange={(e)=>{setCity(e.target.value)} }  className="input"
                        value={city} type="text" />
 
                 <label className="label">Email</label>
-                <input onChange={handleEmail} className="input"
+                <input onChange={(e)=>{setEmail(e.target.value)} } className="input"
                        value={email} type="email" />
 
                 <label className="label">Password</label>
-                <input onChange={handlePassword} className="input"
+                <input     onChange={(e)=>{setPassword(e.target.value)} } className="input"
                        value={password} type="password" />
 
-                <button onClick={handleSubmit} className="btn" type="submit">
+                <label className="label">ConfirmPassword</label>
+                <input onChange={(e)=>{       setConfirmPassword(e.target.value)} }  className="input"
+                       value={confirmpassword} type="password" />
+                <br/> <br/>
+
+                <button className="btn" type="submit" onClick={handleSubmit}>
                     Submit
                 </button>
-            </form>
+            <br/> <br/>
+
         </div>
     );
 }

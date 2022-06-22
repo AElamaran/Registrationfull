@@ -2,19 +2,19 @@
 
 .App {
   text-align: center;
-  background-color:gray;
-  Background-size:cover;
-  Background-position:center;
+  /*background-color:gray;*/
+  Background-size: cover;
+  Background-position: center;
   height: 100%;
   text-decoration-color: #282c34;
-}
 
+}
 
 .label{
 display: block;
 font-size: larger;
 color: white;
-padding: 5px;
+padding: 4px;
 }
 
 .input{
@@ -24,14 +24,26 @@ margin: 2px;
 
 }
 .btn{
-color: white;
-background-color: red;
-border-radius: 5px;
-font-size: larger;
-display: block;
-padding: 5px;
-margin: 10px auto;
+
+  padding: 18px;
+  font-size: 22px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color:#ff0000;
+  border: lightskyblue;
+  border-radius: 8px;
+  box-shadow: 9px 9px #787878;
+
 }
+.btn:hover {background-color:darkred}
+.btn:active {
+  background-color: #ff0000;
+  box-shadow: 0 5px #787878;
+  transform: translateY(3px);
+}
+
 
 .messages{
 display: flex;
@@ -39,12 +51,9 @@ justify-content: center;
 }
 
 .error{
-display: block;
-background-color: red;
-color: white;
-width: fit-content;
-height: 50px;
-padding: 5px;
+color: red;
+height: 5px;
+  font-size: 7.5px;
 }
 
 .success{
@@ -85,9 +94,10 @@ padding: 5px;
 }
 
 .Register {
-  width: 100vw;
-  height: 100vh;
-  background: #f4f4f4;
+  width: 90vw;
+  height: 90vh;
+  float: left;
+
 }
 
 a {
@@ -96,28 +106,36 @@ a {
   text-decoration: none;
   color: white;
 }
-
+h2{
+  text-align: center;
+}
 .center {
-  border: 1px solid #FFFF00;
   display: flex;
-  height: 100vh;
-  width: 100vw;
+  align-content: center;
+  justify-items: center;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  margin-top: 120px;
+  height: 420px;
+  width: 400px;
+  margin-left: 900px;
+  background-color: white;
+  opacity: 0.8;
+  border-radius:5px;
+  padding: 10px 0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .registerItem{
   display: inline-block;
 }
 
-
-
 .button {
+  margin-top: 15px;
   display: inline-block;
   background-color: #787878;
   border-radius: 10px;
-  border: 4px double #cccccc;
+  border: 4px double darkgrey;
   color: #eeeeee;
   text-align: center;
   font-size: 28px;
@@ -128,33 +146,86 @@ a {
   -o-transition: all 0.5s;
   transition: all 0.5s;
   cursor: pointer;
-  margin: 5px;
 }
 
 .button:hover {
-  background-color: green;
+  background-color: darkslategrey;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.button:active {
+  background-color: slategrey;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
 
+.Leftside{
+  margin-top:200px;
+  width: 360px;
+  float: left;
+  margin-left: 150px;
+  font-size: 50px;
+  color: yellow;
 
-.driverRegisterForm {
-  background: url("https://ngs-it.com/files/course/Backgrounds_in_CSS.jpg");
+}
+.companyName{
+  color:white;
+}
+h6{
+  font-size: 20px;
+  text-align: left;
+  color: yellow;
+}
+body{
+  background: url("https://www.topdriver.com/wp-content/uploads/2016/06/shutterstock_221823721.jpg");
+  -moz-box-shadow:    inset 0 0 10px #000000;
+  -webkit-box-shadow: inset 0 0 10px #000000;
+  box-shadow:         inset 0 0 10px #000000;
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
+  /*overflow: hidden;*/
+}
+.formname{
+  font-size:30px;
 }
 
-
-.ClientRegisterform {
-  background: url("https://ngs-it.com/files/course/Backgrounds_in_CSS.jpg");
+/*client*/
+.ClientRegisterform{
+  background-color: lightgray;
+  margin-bottom: 25px;
+  width:450px;
+  padding: 10px 0px;
+  border-radius:5px;
+  margin-left: 900px;
+  margin-top:35px;
+  opacity: 0.8;
+  flex-direction: column;
+}
+.label{
+  color: black;
 }
 
-.VehicleRegisterform {
-  background: url("https://ngs-it.com/files/course/Backgrounds_in_CSS.jpg");
+.driverRegisterForm{
+  background-color: lightgray;
+  /*max-height:;*/
+  width:450px;
+  padding: 10px 0;
+  border-radius:5px;
+  margin-left: 900px;
+  margin-top:35px;
+  opacity: 0.8;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.VehicleRegisterform{
+  background-color: lightgray;
+  width:450px;
+  padding: 10px 0;
+  border-radius:5px;
+  margin-left: 900px;
+  margin-top:35px;
+  opacity: 0.8;
 }
